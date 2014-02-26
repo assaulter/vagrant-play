@@ -1,4 +1,10 @@
 # playが実行できる環境を作る
+こちらを参考に書きました。
+
+Vagrant を利用した Play! Framework 開発環境の作成:http://unok.hatenablog.jp/entry/2013/12/09/093845
+
+内容としては、vagrantの起動とchefで必要な部品をインストールするところを分けたので、コマンド２発でplayコマンドが実行できるようになる(はず)。
+
 ## vagrant関係の導入
 https://www.virtualbox.org/wiki/Downloadsでvbをダウンロード
 
@@ -98,3 +104,12 @@ LWRP型のcookbookなので、cookbookを作成してrecipeからLWRP呼び出�
 ```
 $ knife solo cook play
 ```
+
+## playを実行してみる
+
+```
+$ play new hoge
+$ cd hoge
+$ play run
+```
+9000ポートでリッスンするので、Vagrantfileに書いたアドレス:9000にアクセスするとplayのようこそ画面が表示される。
