@@ -3,7 +3,23 @@
 
 Vagrant を利用した Play! Framework 開発環境の作成:http://unok.hatenablog.jp/entry/2013/12/09/093845
 
-内容としては、vagrantの起動とchefで必要な部品をインストールするところを分けたので、コマンド２発でplayコマンドが実行できるようになる(はず)。
+chefとvm, vagrantが既にインストールされている場合の手順
+
+```
+// Vagrantfileがあるディレクトリで実行
+$ vagrant up
+$ vagrant ssh-config --host play >> ~/.ssh/config
+$ knife solo prepare play
+// nodesができるので削除
+$ rm -rf nodes
+// chef-repoに移動
+// opscodeからcookbookを取得
+$ berks install --path cookbooks
+// 調理開始
+$ knife solo cook play
+```
+
+で、こういうのがめんどくさいので、vagrantに記述したり、chef-soloをインストールするpluginを入れたりするわけですが、それはまた次回。
 
 ## vagrant関係の導入
 https://www.virtualbox.org/wiki/Downloadsでvbをダウンロード
