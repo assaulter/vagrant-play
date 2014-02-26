@@ -1,0 +1,15 @@
+{
+  "sources": {
+    "yum": {
+      "locked_version": "3.1.0"
+    },
+    "java": {
+      "locked_version": "1.19.2"
+    },
+    "simple_iptables": {
+      "locked_version": "0.3.0",
+      "git": "git://github.com/dcrosta/cookbook-simple-iptables.git",
+      "ref": "b09d6d9b481329f9d6fb61bbb9ae1c048151a9ec"
+    }
+  }
+}

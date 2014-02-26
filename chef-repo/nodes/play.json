@@ -1,0 +1,22 @@
+{
+  "java": {
+    "install_flavor": "oracle",
+    "jdk_version": "7",
+    "oracle": {
+      "accept_oracle_download_terms": true
+    }
+  },
+  "play-install": {
+    "user": "vagrant",
+    "group": "vagrant",
+    "play_dir": "/usr/local/play",
+    "versions": ["2.2.1"]
+  },
+  "run_list":[
+    "recipe[yum]",
+    "recipe[java]",
+    "recipe[play-install]",
+    "recipe[simple_iptables]",
+    "recipe[iptables]"
+  ]
+}
