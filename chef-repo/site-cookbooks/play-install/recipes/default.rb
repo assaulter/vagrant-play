@@ -29,6 +29,7 @@ node['play-install']['versions'].each do |version|
 
   cache_path = Chef::Config[:file_cache_path]
   zip_file_name = "play-#{version}.zip"
+  play_path = node['play-install']['play_dir']
 
   # remote_file:リモートサーバーにあるファイルをhttp経由で取得する命令
   remote_file "#{cache_path}/#{zip_file_name}" do
@@ -36,12 +37,25 @@ node['play-install']['versions'].each do |version|
     mode "0644"
   end
 
-  bash "extract play zip and link command" do
+  bash "extract play zip" do
     cwd node['play-install']['play_dir']
     code <<-BASH
       unzip #{cache_path}/#{zip_file_name}
       chown -R #{node['play-install']['user']}:#{node['play-install']['group']} .
-      sudo ln -s play-#{version}/play /usr/local/bin/play
     BASH
+  end
+
+  bash "link play command to play_dir" do
+    cwd node['play-install']['play_dir']
+    code <<-BASH
+      ln -s #{play_path}/play-#{version}/play #{play_path}/play
+    BASH
+  end
+
+  bash "add play command to bash" do
+    code <<-BASH
+      echo "export PATH=#{play_path}:$PATH" >> /etc/bashrc
+    BASH
+    not_if "which play"
   end
 end
