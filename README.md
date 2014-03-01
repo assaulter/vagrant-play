@@ -115,6 +115,22 @@ http://tsuchikazu.net/vps_chef_solo/
 
 LWRP型のcookbookなので、cookbookを作成してrecipeからLWRP呼び出します。
 
+## mysqlの導入
+opscode-mysqlを使用する。https://github.com/opscode-cookbooks/mysql
+
+berks installした後下記を追加(passは適当に変更)
+
+```
+{
+  "mysql": {
+    "server_root_password": "iloverandompasswordsbutthiswilldo",
+    "server_repl_password": "iloverandompasswordsbutthiswilldo",
+    "server_debian_password": "iloverandompasswordsbutthiswilldo"
+  },
+  "run_list":["recipe[mysql::server]"]
+}
+```
+
 ## chef-soloをknifeで実行する
 
 ```
