@@ -6,6 +6,11 @@
       "accept_oracle_download_terms": true
     }
   },
+  "mysql": {
+    "server_root_password": "play",
+    "server_repl_password": "play",
+    "server_debian_password": "play"
+  },
   "play-install": {
     "user": "vagrant",
     "group": "vagrant",
@@ -17,6 +22,7 @@
     "recipe[java]",
     "recipe[play-install]",
     "recipe[simple_iptables]",
-    "recipe[iptables]"
+    "recipe[iptables]",
+    "recipe[mysql::server]"
   ]
 }
